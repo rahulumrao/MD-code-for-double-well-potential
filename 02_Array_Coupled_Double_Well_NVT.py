@@ -18,6 +18,8 @@ pote = open("pot.txt", "w+")
 noise = open("noise.txt","w+")
 temp = open("Temp.txt","w+")
 phase = open("ps.txt","w+")
+
+condition = input("\nCONSTANT TEMPERATURE MD OR CONSTANT ENERGY DYNAMICS ?? (Y/N):   ")
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # %% SCALING THE INITIAL VELOCITIES
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,11 +77,11 @@ def velocity (acc,vel,delT):
     return vel
 #----------------------------------------------------------------------------------------------------------------------------------------------
 def langevin_force (pos,delT,gamma,acc,vel,U,m1,k,a,Kb,T):
-''' LANGEVIN MODIFIED FORCES TO CONTROL THE SYSTEM TEMPERATURE WHERE,
-THE "gamma" IS THE FRICTION CO-EFFICIENT. THIS CONSISTS OF ADDING A RANDOM FORCE
-AND SUBTRACTING A FRICTION FORCE FROM EACH ATOM DURING EACH INTEGRATION STEP.
-THE RANDOM FORCE IS CALCULATED SUCH THAT THE AVERAGE FORCE IS ZERO.
-'''
+   ''' LANGEVIN MODIFIED FORCES TO CONTROL THE SYSTEM TEMPERATURE WHERE,
+   THE "gamma" IS THE FRICTION CO-EFFICIENT. THIS CONSISTS OF ADDING A RANDOM FORCE
+   AND SUBTRACTING A FRICTION FORCE FROM EACH ATOM DURING EACH INTEGRATION STEP.
+   THE RANDOM FORCE IS CALCULATED SUCH THAT THE AVERAGE FORCE IS ZERO.
+   '''
    acc = np.zeros([2,2])
    
    r1 = random.random() ;   r2 = random.random()
@@ -108,12 +110,14 @@ Derive forces       ====>
 Calculate velocity  ====>
 '''
 def main():
-    steps = 1 ; n = 100000 
-    a = 1.5 ; U = 0.01 ; k = 1.0 ; m1 = 20000.0 ; T = 300.0 ; Kb = 3.15e-6 ; delT =  50.0 ; gamma = 1e-2
-''' DEFINING INITIAL POSTION DEFINED AT ONE MINIMUM (1.5AU) BARRIER BETWEEN TWO MINIMUM
-IN x-axis IS 0.01 AU AND SPIRNG CONSTANT 1.0 AU AMSS OF THE PARTICLE IS 20000amu 
-Time Step IS 50 AU AND FRICTION COEFFICIENT IS 0.001 WITH THE UNIT OF time^-1
-'''
+    steps = 1 ; n = 100000
+    if (condition == 'Y'):   gamma = 1e-2
+    elif (condition == 'N'): gamma = 0.0
+    a = 1.5 ; U = 0.01 ; k = 1.0 ; m1 = 20000.0 ; T = 300.0 ; Kb = 3.15e-6 ; delT =  50.0 #; gamma = 1e-2
+    ''' DEFINING INITIAL POSTION DEFINED AT ONE MINIMUM (1.5AU) BARRIER BETWEEN TWO MINIMUM
+    IN x-axis IS 0.01 AU AND SPIRNG CONSTANT 1.0 AU AMSS OF THE PARTICLE IS 20000amu 
+    Time Step IS 50 AU AND FRICTION COEFFICIENT IS 0.001 WITH THE UNIT OF time^-1
+    '''
     vel = np.zeros([steps+1, steps+1])
     pos = np.zeros([steps+1, steps+1])
     acc = np.zeros([steps+1, steps+1])
