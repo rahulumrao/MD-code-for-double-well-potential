@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 #----------------------------------------------------------------------------------------------------------------------------------------------
 ''' THIS PROGRAM IS WRITTEN IN PYTHON3 TWO SOLVE THE PROBLEM OF DOUBLE WELL POTENTIAL WHICH IS HARMONIC
-IN y-axis AND HAS A BRRIER OF 0.001au IN x-axis WITH THE TWO MINIMUM AT +1.5 AND -1.5
-{U = 0.001*(x**2 - a**2)**2 - 8.5*k*y**2}
+IN y-axis AND HAS A BRRIER OF 0.01au IN x-axis WITH THE TWO MINIMUM AT +1.5 AND -1.5
+{U = 0.01*(x**2 - a**2)**2 - 8.5*k*y**2}
 REQUIRED LIBRARY FOR THIS POROGRAM IS "numpy, math and matplotlib(IF YOU WANT TO PLOT USING PYTHON).
 %% WRITTEN IN APRIL 3rd 2019 in SL302 %% '''
 #----------------------------------------------------------------------------------------------------------------------------------------------
