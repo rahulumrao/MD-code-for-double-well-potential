@@ -7,6 +7,7 @@ IN y-axis AND HAS A BRRIER OF 0.01au IN x-axis WITH THE TWO MINIMUM AT +1.5 AND 
 REQUIRED LIBRARY FOR THIS POROGRAM IS "numpy, math and matplotlib(IF YOU WANT TO PLOT USING PYTHON).
 %% WRITTEN IN APRIL 3rd 2019 in SL302 by RAHUL VERMA %% '''
 #----------------------------------------------------------------------------------------------------------------------------------------------
+import sys
 import random
 import math as m
 import numpy as np
@@ -18,8 +19,6 @@ pote = open("pot.txt", "w+")
 noise = open("noise.txt","w+")
 temp = open("Temp.txt","w+")
 phase = open("ps.txt","w+")
-
-condition = input("\nCONSTANT TEMPERATURE MD OR CONSTANT ENERGY DYNAMICS ?? (Y/N):   ")
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # %% SCALING THE INITIAL VELOCITIES
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -110,11 +109,15 @@ Derive forces       ====>
 Calculate velocity  ====>
 '''
 def main():
+    condition = input("\n CONSTANT TEMPERATURE LANGEVIN DYNAMICS ?? (Y/N):   ")
+    if (condition in ('Y','y','yes')):   gamma = 1e-2
+    elif (condition in ('N','n','no')): gamma = 0.0
+    else :
+        sys.exit(print("\n PLEASE CONSISTENT WITH THE OPTIONS... THANK YOU ! \n")) 
+
     steps = 1 ; n = 100000
-    if (condition == 'Y'):   gamma = 1e-2
-    elif (condition == 'N'): gamma = 0.0
     a = 1.5 ; U = 0.01 ; k = 1.0 ; m1 = 20000.0 ; T = 300.0 ; Kb = 3.15e-6 ; delT =  50.0 #; gamma = 1e-2
-    ''' DEFINING INITIAL POSTION DEFINED AT ONE MINIMUM (1.5AU) BARRIER BETWEEN TWO MINIMUM
+    ''' INITIAL POSTION DEFINED AT ONE MINIMUM (1.5AU) BARRIER BETWEEN TWO MINIMUM
     IN x-axis IS 0.01 AU AND SPIRNG CONSTANT 1.0 AU AMSS OF THE PARTICLE IS 20000amu 
     Time Step IS 50 AU AND FRICTION COEFFICIENT IS 0.001 WITH THE UNIT OF time^-1
     '''
