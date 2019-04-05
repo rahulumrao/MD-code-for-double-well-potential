@@ -88,7 +88,7 @@ def langevin_force (pos,delT,gamma,acc,vel,U,m1,k,a,Kb,T):
    r11 = m.sqrt(-2.0*m.log10(r1))*m.cos(2.0*m.pi*r2)
    r22 = m.sqrt(-2.0*m.log10(r1))*m.sin(2.0*m.pi*r2)
 
-   sigma = m.sqrt((2.0*Kb*T*gamma*m1)/delT)
+   sigma = m.sqrt((2.31*Kb*T*gamma*m1)/delT)
    noise1 = sigma*r11 ; noise2 = sigma*r22
     
    fx = -(4.0*U*pos[0,0]*(pos[0,0]**2 - a**2)) - gamma*vel[0,0]*m1 + noise1
